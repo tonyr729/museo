@@ -10,4 +10,8 @@ class Curator
   def add_photographs(photo)
     @photographs << photo
   end
+
+  def add_artists(artist)
+    @artists << artist
+  end
 end
