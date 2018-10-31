@@ -1,5 +1,6 @@
 require_relative '../lib/artist'
 require_relative '../lib/photograph'
+require 'csv'
 
 
 class Curator
@@ -11,8 +12,21 @@ class Curator
     @photographs = []
   end
 
+
   def add_photographs(photo)
     @photographs << Photograph.new(photo)
+  end
+
+  def load_photographs(path)
+    parsed_photo_data = parser(path)
+    parsed_photo_data.each do |photo_data|
+      @photographs << Photograph.new(photo_data)
+    end
+  end
+
+  def parser(path)
+    file = CSV.read(path, headers: true, header_converters: :symbol)
+    file.map {|row| row.to_h}
   end
 
   def add_artists(artist)

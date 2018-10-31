@@ -162,4 +162,13 @@ class CuratorTest < Minitest::Test
     assert_equal "4", actual.last.id
     assert_equal "Child with Toy Hand Grenade in Central Park", actual.last.name
   end
+
+  def test_it_load_photographs_from_file
+    @curator.load_photographs('./data/photographs.csv')
+
+    assert_equal 4, @curator.photographs.length
+    assert_instance_of Photograph, @curator.photographs[0]
+    assert_equal "1", @curator.photographs.first.id
+    assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", @curator.photographs.first.name
+  end
 end
