@@ -85,4 +85,27 @@ class CuratorTest < Minitest::Test
 
     assert_equal photo_2, @curator.find_photograph_by_id("2")
   end
+
+  def test_it_can_find_a_artist_by_id
+    artist_1 = {
+      id: "1",
+      name: "Henri Cartier-Bresson",
+      born: "1908",
+      died: "2004",
+      country: "France"
+    }
+
+    artist_2 = {
+      id: "2",
+      name: "Ansel Adams",
+      born: "1902",
+      died: "1984",
+      country: "United States"
+    }
+
+    @curator.add_artists(artist_1)
+    @curator.add_artists(artist_2)
+
+    assert_equal artist_2, @curator.find_artist_by_id("2")
+  end
 end
