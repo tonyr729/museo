@@ -30,4 +30,12 @@ class Curator
   def find_photographs_by_artist(artist)
     @photographs.select {|photograph| photograph.artist_id == artist.id}
   end
+
+  def artists_with_multiple_photographs
+    grouped_by_artist = @photographs.group_by {|photograph| photograph.artist_id}
+    grouped_by_artist.inject([]) do |busy_artists, (id, photos)|
+      busy_artists << find_artist_by_id(id) if photos.length > 1
+      busy_artists
+    end
+  end
 end

@@ -126,4 +126,20 @@ class CuratorTest < Minitest::Test
     assert_equal "4", actual.last.id
     assert_equal "Child with Toy Hand Grenade in Central Park", actual.last.name
   end
+
+  def test_it_can_find_artists_with_multiple_photographs
+    @curator.add_artists(@artists[0])
+    @curator.add_artists(@artists[1])
+    @curator.add_artists(@artists[2])
+    @curator.add_photographs(@photographs[0])
+    @curator.add_photographs(@photographs[1])
+    @curator.add_photographs(@photographs[2])
+    @curator.add_photographs(@photographs[3])
+
+    actual = @curator.artists_with_multiple_photographs
+
+    assert_equal 1, actual.length
+    assert_equal "3", actual.first.id
+    assert_equal "Diane Arbus", actual.first.name
+  end
 end
