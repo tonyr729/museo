@@ -171,4 +171,13 @@ class CuratorTest < Minitest::Test
     assert_equal "1", @curator.photographs.first.id
     assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", @curator.photographs.first.name
   end
+
+  def test_it_load_artists_from_file
+    @curator.load_artists('./data/artists.csv')
+
+    assert_equal 6, @curator.artists.length
+    assert_instance_of Artist, @curator.artists[0]
+    assert_equal "1", @curator.artists.first.id
+    assert_equal "Henri Cartier-Bresson", @curator.artists.first.name
+  end
 end

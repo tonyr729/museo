@@ -24,6 +24,13 @@ class Curator
     end
   end
 
+  def load_artists(path)
+    parsed_artist_data = parser(path)
+    parsed_artist_data.each do |artist_data|
+      @artists << Artist.new(artist_data)
+    end
+  end
+
   def parser(path)
     file = CSV.read(path, headers: true, header_converters: :symbol)
     file.map {|row| row.to_h}
