@@ -38,4 +38,12 @@ class Curator
       busy_artists
     end
   end
+
+  def photographs_taken_by_artists_from(location)
+    photos = @artists.inject([]) do |matched_photos, artist|
+      matched_photos << find_photographs_by_artist(artist) if artist.country == location
+      matched_photos
+    end
+    photos.flatten!
+  end
 end

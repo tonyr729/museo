@@ -144,4 +144,22 @@ class CuratorTest < Minitest::Test
     assert_equal "Diane Arbus", actual.first.name
     assert diane_arbus == actual.first
   end
+
+  def test_it_can_find_photographs_taken_by_artists_from_a_given_location
+    @curator.add_artists(@artists[0])
+    @curator.add_artists(@artists[1])
+    @curator.add_artists(@artists[2])
+    @curator.add_photographs(@photographs[0])
+    @curator.add_photographs(@photographs[1])
+    @curator.add_photographs(@photographs[2])
+    @curator.add_photographs(@photographs[3])
+
+    actual = @curator.photographs_taken_by_artists_from("United States")
+
+    assert_equal 3, actual.length
+    assert_equal "2", actual.first.id
+    assert_equal "Moonrise, Hernandez", actual.first.name
+    assert_equal "4", actual.last.id
+    assert_equal "Child with Toy Hand Grenade in Central Park", actual.last.name
+  end
 end
