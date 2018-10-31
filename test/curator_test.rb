@@ -107,17 +107,23 @@ class CuratorTest < Minitest::Test
     assert_equal "Ansel Adams", actual.name
   end
 
-  # def test_it_can_find_photographs_by_artist
-  #   @curator.add_artists(@artists[0])
-  #   @curator.add_artists(@artists[1])
-  #   @curator.add_artists(@artists[2])
-  #   @curator.add_photographs(@photographs[0])
-  #   @curator.add_photographs(@photographs[1])
-  #   @curator.add_photographs(@photographs[2])
-  #   @curator.add_photographs(@photographs[3])
-  #
-  #   diane_arbus = @curator.find_artist_by_id("3")
-  #
-  #   assert_equal @curator.photographs[(2..3)], @curator.find_photographs_by_artist(diane_arbus)
-  # end
+  def test_it_can_find_photographs_by_artist
+    @curator.add_artists(@artists[0])
+    @curator.add_artists(@artists[1])
+    @curator.add_artists(@artists[2])
+    @curator.add_photographs(@photographs[0])
+    @curator.add_photographs(@photographs[1])
+    @curator.add_photographs(@photographs[2])
+    @curator.add_photographs(@photographs[3])
+
+    diane_arbus = @curator.find_artist_by_id("3")
+
+    actual = @curator.find_photographs_by_artist(diane_arbus)
+
+    assert_equal 2, actual.length
+    assert_equal "3", actual.first.id
+    assert_equal "Identical Twins, Roselle, New Jersey", actual.first.name
+    assert_equal "4", actual.last.id
+    assert_equal "Child with Toy Hand Grenade in Central Park", actual.last.name
+  end
 end
