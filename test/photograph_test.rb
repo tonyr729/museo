@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/photograph'
 
-class PhotographsTest < Minitest::Test
+class PhotographTest < Minitest::Test
   def setup
     @attributes = {
       id: "1",

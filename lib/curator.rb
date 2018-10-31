@@ -7,5 +7,7 @@ class Curator
     @photographs = []
   end
 
-  
+  def add_photographs(photo)
+    @photographs << photo
+  end
 end
